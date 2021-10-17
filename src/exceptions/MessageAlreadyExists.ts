@@ -1,13 +1,11 @@
-export class MessageAlreadyExistsError {
-  public readonly type: 'conflict';
+import { BaseError } from '@/exceptions/Base'
 
-  public readonly name: string;
-
-  public readonly message: string;
-
+export class MessageAlreadyExistsError extends BaseError {
   constructor() {
-    this.type = 'conflict';
-    this.name = 'MessageAlreadyExistsError';
-    this.message = 'The same message has already sent, be more creative!'
+    super({
+      type: 'conflict',
+      name: 'MessageAlreadyExistsError',
+      message: 'The same message has already sent, be more creative!',
+    })
   }
 }
