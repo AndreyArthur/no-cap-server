@@ -1,5 +1,6 @@
 import { Message } from "@/entities";
 import { MessageAlreadyExistsError } from "@/exceptions";
+import { InvalidMessageContentError } from "@/exceptions/InvalidMessageContent";
 import { MessagesRepository } from "@/repositories";
 
 export class CreateMessageUseCase {
@@ -10,6 +11,12 @@ export class CreateMessageUseCase {
   }
 
   public async execute(content: string): Promise<Message> {
+    if (typeof content !== 'string'
+      || content.length < 6
+      || content.length > 255) {
+      throw new InvalidMessageContentError();
+    }
+
     const messageExists = await this.messagesRepository.findByContent(content);
 
     if (messageExists) throw new MessageAlreadyExistsError();

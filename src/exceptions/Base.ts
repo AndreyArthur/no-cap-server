@@ -1,5 +1,5 @@
 export class BaseError {
-  public readonly type: 'conflict';
+  public readonly type: 'conflict' | 'validation';
 
   public readonly name: string;
 
