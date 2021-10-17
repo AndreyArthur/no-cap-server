@@ -1,4 +1,5 @@
 import { MessageAlreadyExistsError } from "@/exceptions";
+import { InvalidMessageContentError } from "@/exceptions/InvalidMessageContent";
 import { CreateMessageUseCase } from "@/useCases";
 import { MessagesRepositoryStub } from "@/__tests__/stubs/repositories";
 
@@ -34,5 +35,41 @@ describe('CreateMessage UseCase', () => {
     } catch (err) {
       expect(err instanceof MessageAlreadyExistsError).toBe(true);
     }
-  })
+  });
+
+  it('should fail because message content is invalid', async () => {
+    const { createMessage } = setup();
+
+    try {
+      await createMessage.execute('Hello');
+
+      throw null;
+    } catch (err) {
+      expect(err instanceof InvalidMessageContentError).toBe(true);
+    }
+
+    try {
+      await createMessage.execute((() => {
+        let text = '';
+
+        for (let i = 0; i < 256; i++) {
+          text += 'a';
+        }
+
+        return text
+      })());
+
+      throw null;
+    } catch (err) {
+      expect(err instanceof InvalidMessageContentError).toBe(true);
+    }
+
+    try {
+      await createMessage.execute(true as unknown as string);
+
+      throw null;
+    } catch (err) {
+      expect(err instanceof InvalidMessageContentError).toBe(true);
+    }
+  });
 });
