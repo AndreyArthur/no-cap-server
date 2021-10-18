@@ -12,7 +12,7 @@ export class HttpHandlerControllerAdapter {
       req: http.IncomingMessage, res: http.ServerResponse,
     ): Promise<void> => {
       try {
-        const body = await new Promise((resolve, reject) => {
+        const body = await new Promise((resolve) => {
           const chunks: string[] = [];
 
           req.on('data', (chunk) => chunks.push(chunk));
@@ -21,7 +21,7 @@ export class HttpHandlerControllerAdapter {
             try {
               resolve(JSON.parse(chunks.join('')));
             } catch (err) {
-              reject(err);
+              resolve({});
             }
           });
         });
