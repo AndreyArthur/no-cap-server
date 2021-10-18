@@ -1,3 +1,4 @@
+import { Message } from '@/entities';
 import { database } from '@/infra/database';
 import { MessagesRepositoryPostgres } from '@/infra/repositories';
 
@@ -30,5 +31,20 @@ describe('MessagesPostgres Repository', () => {
 
     expect(message?.content).toBe(content);
     expect(!!message).toBe(true);
+  });
+
+  it('should get a random row in database', async () => {
+    const messagesRepository = new MessagesRepositoryPostgres();
+    const messageFromEmptyTable = await messagesRepository.findRandom();
+
+    expect(messageFromEmptyTable).toBe(null);
+
+    await database.query(
+      'INSERT INTO messages (content) VALUES (\'a\'), (\'b\'), (\'c\');',
+    );
+
+    const randomMessage = await messagesRepository.findRandom() as Message;
+
+    expect(['a', 'b', 'c'].includes(randomMessage.content)).toBe(true);
   });
 });
