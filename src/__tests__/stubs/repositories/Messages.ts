@@ -17,4 +17,12 @@ export class MessagesRepositoryStub implements MessagesRepository {
       createdAt: new Date(),
     });
   }
+
+  public async findRandom(): Promise<Message | null> {
+    return Promise.resolve({
+      id: 1,
+      content: 'content',
+      createdAt: new Date(),
+    });
+  }
 }
