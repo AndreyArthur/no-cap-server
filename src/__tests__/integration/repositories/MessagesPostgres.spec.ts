@@ -1,5 +1,5 @@
 import { database } from "@/infra/database";
-import { MessagesRepositoryPostgres } from "@/infra/repositories/MessagesPostgres";
+import { MessagesRepositoryPostgres } from "@/infra/repositories";
 
 describe('MessagesPostgres Repository', () => {
   beforeAll(async () => { await database.migrate(); });
