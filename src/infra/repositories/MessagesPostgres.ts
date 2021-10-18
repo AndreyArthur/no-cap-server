@@ -42,4 +42,18 @@ export class MessagesRepositoryPostgres implements MessagesRepository {
       createdAt: messageData.created_at,
     });
   }
+
+  public async findRandom(): Promise<Message | null> {
+    const messageData = await database.oneOrNone<MessageData>(
+      'SELECT * FROM messages ORDER BY RANDOM() LIMIT 1;',
+    );
+
+    if (!messageData) return null;
+
+    return new Message({
+      id: messageData.id,
+      content: messageData.content,
+      createdAt: messageData.created_at,
+    });
+  }
 }
