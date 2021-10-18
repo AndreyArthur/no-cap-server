@@ -1,5 +1,8 @@
 import { HttpHandler, HttpHandlerControllerAdapter } from '@/adapters';
-import { CreateMessageControllerFactory } from '@/factories';
+import {
+  CreateMessageControllerFactory,
+  GetRandomMessageControllerFactory,
+} from '@/factories';
 
 type Route = {
   url: RegExp;
@@ -14,6 +17,17 @@ export const routes: Route[] = [
     handler: async (req, res): Promise<void> => {
       const handle = HttpHandlerControllerAdapter.convert(
         CreateMessageControllerFactory.create(),
+      );
+
+      return handle(req, res);
+    },
+  },
+  {
+    url: /^\/messages\/?/,
+    method: 'GET',
+    handler: async (req, res): Promise<void> => {
+      const handle = HttpHandlerControllerAdapter.convert(
+        GetRandomMessageControllerFactory.create(),
       );
 
       return handle(req, res);
