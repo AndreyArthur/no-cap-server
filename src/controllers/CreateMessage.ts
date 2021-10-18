@@ -4,12 +4,12 @@ import {
   MissingMessageContentError,
 } from '@/exceptions';
 import { HttpRequest, HttpResponse, Controller } from '@/protocols';
-import { CreateMessageUseCase } from '@/useCases';
+import { CreateMessage } from '@/useCases';
 
 export class CreateMessageController implements Controller {
-  private readonly createMessage: CreateMessageUseCase;
+  private readonly createMessage: CreateMessage;
 
-  constructor(createMessage: CreateMessageUseCase) {
+  constructor(createMessage: CreateMessage) {
     this.createMessage = createMessage;
   }
 

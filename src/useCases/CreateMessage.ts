@@ -5,8 +5,9 @@ import {
   InvalidMessageContentError,
 } from '@/exceptions';
 import { MessagesRepository } from '@/repositories';
+import { CreateMessage } from '@/useCases';
 
-export class CreateMessageUseCase {
+export class CreateMessageUseCase implements CreateMessage {
   private readonly messagesRepository: MessagesRepository;
 
   constructor(messagesRepository: MessagesRepository) {
