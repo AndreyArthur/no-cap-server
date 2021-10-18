@@ -3,6 +3,6 @@ import { addAlias } from 'module-alias';
 
 addAlias('@', path.resolve(__dirname));
 
-const main = (): string => 'Hello, World!';
+import { server } from '@/infra/http';
 
-console.log(main());
+server.start();
