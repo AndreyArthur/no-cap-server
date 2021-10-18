@@ -1,10 +1,10 @@
-import { Message } from "@/entities";
+import { Message } from '@/entities';
 import {
   MessageAlreadyExistsError,
   MissingMessageContentError,
-  InvalidMessageContentError
-} from "@/exceptions";
-import { MessagesRepository } from "@/repositories";
+  InvalidMessageContentError,
+} from '@/exceptions';
+import { MessagesRepository } from '@/repositories';
 
 export class CreateMessageUseCase {
   private readonly messagesRepository: MessagesRepository;

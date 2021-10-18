@@ -1,6 +1,5 @@
 import { connection } from '@/infra/database/knex';
 
-
 const query = async <T = unknown>(
   text: string, bindings?: unknown[],
 ): Promise<T> => {
@@ -29,5 +28,5 @@ export const database = {
   migrate: async (): Promise<void> => {
     await connection.migrate.latest();
   },
-  close: (): void => { connection.destroy(); }
-}
+  close: (): void => { connection.destroy(); },
+};

@@ -2,11 +2,17 @@ import {
   MessageAlreadyExistsError,
   MissingMessageContentError,
   InvalidMessageContentError,
-} from "@/exceptions";
-import { CreateMessageUseCase } from "@/useCases";
-import { MessagesRepositoryStub } from "@/__tests__/stubs/repositories";
+} from '@/exceptions';
+import { MessagesRepository } from '@/repositories';
+import { CreateMessageUseCase } from '@/useCases';
+import { MessagesRepositoryStub } from '@/__tests__/stubs/repositories';
 
-const setup = () => {
+type SetupComponents = {
+  messagesRepository: MessagesRepository;
+  createMessage: CreateMessageUseCase;
+};
+
+const setup = (): SetupComponents => {
   const messagesRepository = new MessagesRepositoryStub();
   const createMessage = new CreateMessageUseCase(messagesRepository);
 
@@ -23,7 +29,7 @@ describe('CreateMessage UseCase', () => {
     jest.spyOn(messagesRepository, 'findByContent')
       .mockReturnValueOnce(Promise.resolve(null));
 
-    const message = await createMessage.execute('Test message.')
+    const message = await createMessage.execute('Test message.');
 
     expect(message.content).toBe('Test message.');
   });
@@ -32,7 +38,7 @@ describe('CreateMessage UseCase', () => {
     const { createMessage } = setup();
 
     try {
-      await createMessage.execute('Test message.')
+      await createMessage.execute('Test message.');
 
       throw null;
     } catch (err) {
@@ -64,14 +70,14 @@ describe('CreateMessage UseCase', () => {
     }
 
     try {
-      await createMessage.execute((() => {
+      await createMessage.execute(((): string => {
         let text = '';
 
-        for (let i = 0; i < 256; i++) {
+        for (let i = 0; i < 256; i += 1) {
           text += 'a';
         }
 
-        return text
+        return text;
       })());
 
       throw null;

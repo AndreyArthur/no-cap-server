@@ -2,7 +2,7 @@ type MessageConstructor = {
   id: number;
   content: string;
   createdAt?: Date;
-}
+};
 
 export class Message {
   public readonly id: number;

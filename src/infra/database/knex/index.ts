@@ -3,5 +3,5 @@ import { connection } from '@/infra/database/knex/connection';
 
 export {
   connection,
-  config
+  config,
 };

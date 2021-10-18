@@ -19,5 +19,5 @@ export const app = http.createServer((req, res) => {
     return route.handler(req, res);
   }
 
-  return res.end(`Cannot ${req.method} ${req.url}`)
+  return res.end(`Cannot ${req.method} ${req.url}`);
 });

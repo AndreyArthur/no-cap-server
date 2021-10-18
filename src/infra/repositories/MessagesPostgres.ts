@@ -1,12 +1,12 @@
-import { Message } from "@/entities";
-import { MessagesRepository } from "@/repositories";
-import { database } from "@/infra/database";
+import { Message } from '@/entities';
+import { MessagesRepository } from '@/repositories';
+import { database } from '@/infra/database';
 
 type MessageData = {
   id: number;
   content: string;
   created_at: Date;
-}
+};
 
 export class MessagesRepositoryPostgres implements MessagesRepository {
   public async save(content: string): Promise<Message> {
@@ -14,7 +14,7 @@ export class MessagesRepositoryPostgres implements MessagesRepository {
       'INSERT INTO messages (content) VALUES (?) RETURNING *;',
       [
         content,
-      ]
+      ],
     );
 
     if (!messageData) throw new Error('Query failed.');
@@ -31,7 +31,7 @@ export class MessagesRepositoryPostgres implements MessagesRepository {
       'SELECT * FROM messages WHERE content = ?;',
       [
         content,
-      ]
+      ],
     );
 
     if (!messageData) return null;

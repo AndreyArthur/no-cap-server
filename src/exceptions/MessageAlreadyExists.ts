@@ -1,4 +1,4 @@
-import { BaseError } from '@/exceptions/Base'
+import { BaseError } from '@/exceptions/Base';
 
 export class MessageAlreadyExistsError extends BaseError {
   constructor() {
@@ -6,6 +6,6 @@ export class MessageAlreadyExistsError extends BaseError {
       type: 'conflict',
       name: 'MessageAlreadyExistsError',
       message: 'The same message has already sent, be more creative!',
-    })
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { BaseError } from '@/exceptions/Base'
+import { BaseError } from '@/exceptions/Base';
 
 export class MissingMessageContentError extends BaseError {
   constructor() {
@@ -6,7 +6,6 @@ export class MissingMessageContentError extends BaseError {
       type: 'validation',
       name: 'MissingMessageContentError',
       message: 'Field \'content\' is required.',
-    })
+    });
   }
 }
-

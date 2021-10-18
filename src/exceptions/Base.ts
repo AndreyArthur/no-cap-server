@@ -11,4 +11,3 @@ export class BaseError {
     this.message = message;
   }
 }
-

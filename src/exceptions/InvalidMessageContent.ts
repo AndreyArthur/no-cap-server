@@ -1,4 +1,4 @@
-import { BaseError } from '@/exceptions/Base'
+import { BaseError } from '@/exceptions/Base';
 
 export class InvalidMessageContentError extends BaseError {
   constructor() {
@@ -6,6 +6,6 @@ export class InvalidMessageContentError extends BaseError {
       type: 'validation',
       name: 'InvalidMessageContentError',
       message: 'Invalid message content, must be string and have 6-255 characters.',
-    })
+    });
   }
 }

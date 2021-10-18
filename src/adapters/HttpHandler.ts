@@ -1,6 +1,6 @@
 import http from 'http';
 
-import { Controller } from "@/protocols";
+import { Controller } from '@/protocols';
 
 export type HttpHandler = (
   req: http.IncomingMessage, res: http.ServerResponse
@@ -9,7 +9,7 @@ export type HttpHandler = (
 export class HttpHandlerControllerAdapter {
   public static convert(controller: Controller): HttpHandler {
     return async (
-      req: http.IncomingMessage, res: http.ServerResponse
+      req: http.IncomingMessage, res: http.ServerResponse,
     ): Promise<void> => {
       try {
         const body = await new Promise((resolve, reject) => {
@@ -41,6 +41,6 @@ export class HttpHandlerControllerAdapter {
           message: 'An internal server error has occured, try again later.',
         }));
       }
-    }
+    };
   }
 }

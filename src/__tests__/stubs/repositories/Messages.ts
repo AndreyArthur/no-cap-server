@@ -1,5 +1,5 @@
-import { Message } from "@/entities";
-import { MessagesRepository } from "@/repositories";
+import { Message } from '@/entities';
+import { MessagesRepository } from '@/repositories';
 
 export class MessagesRepositoryStub implements MessagesRepository {
   public async save(content: string): Promise<Message> {
