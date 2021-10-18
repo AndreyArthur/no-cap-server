@@ -1,12 +1,11 @@
 import { NoMessagesError } from '@/exceptions';
 import { MessagesRepository } from '@/repositories';
-import { GetRandomMessage } from '@/useCases';
-import { GetRandomMessageUseCase } from '@/useCases/GetRandomMessage';
+import { GetRandomMessageUseCase } from '@/useCases';
 import { MessagesRepositoryStub } from '@/__tests__/stubs/repositories';
 
 type SetupComponents = {
   messagesRepository: MessagesRepository;
-  getRandomMessage: GetRandomMessage;
+  getRandomMessage: GetRandomMessageUseCase;
 };
 
 const setup = (): SetupComponents => {
