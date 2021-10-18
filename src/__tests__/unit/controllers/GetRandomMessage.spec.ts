@@ -3,7 +3,7 @@ import {
   NoMessagesError,
 } from '@/exceptions';
 import { GetRandomMessage } from '@/useCases';
-import { GetRandomMessageUseCase } from '@/__tests__/stubs/useCases';
+import { GetRandomMessageUseCaseStub } from '@/__tests__/stubs/useCases';
 
 type SetupComponents = {
   getRandomMessageController: GetRandomMessageController;
@@ -11,7 +11,7 @@ type SetupComponents = {
 };
 
 const setup = (): SetupComponents => {
-  const getRandomMessage = new GetRandomMessageUseCase();
+  const getRandomMessage = new GetRandomMessageUseCaseStub();
   const getRandomMessageController = new GetRandomMessageController(
     getRandomMessage,
   );
