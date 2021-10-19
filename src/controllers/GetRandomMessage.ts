@@ -18,7 +18,7 @@ export class GetRandomMessageController implements Controller {
         body: {
           id: message.id,
           content: message.content,
-          createdAt: message.createdAt.toISOString,
+          createdAt: message.createdAt.toISOString(),
         },
       };
     } catch (err) {
