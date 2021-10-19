@@ -11,6 +11,10 @@ export const app = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
   res.setHeader('Access-Control-Max-Age', 2592000);
 
+  if (req.method === 'OPTIONS') {
+    return res.end();
+  }
+
   const route = routes.find(({ url, method }) => (
     req.url?.match(url) && req.method === method
   ));
