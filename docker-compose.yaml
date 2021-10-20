@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:alpine
+    restart: always
+    env_file: .env.production
+    volumes:
+      - ./data/postgresql/:/var/lib/postgresql/data
+
+  app:
+    build: .
+    restart: always
+    env_file: .env.production
+    links:
+      - postgres
+    depends_on:
+      - postgres
+
+  nginx:
+    image: nginx:stable-alpine
+    restart: always
+    ports:
+      - 3333:80
+    volumes:
+      - ./config/nginx/servers:/etc/nginx/conf.d/
+    links:
+      - app
+    depends_on:
+      - app
